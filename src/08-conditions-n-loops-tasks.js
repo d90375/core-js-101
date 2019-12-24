@@ -128,8 +128,11 @@ function doRectanglesOverlap(rect1, rect2) {
     // eslint-disable-next-line no-param-reassign
     rect2 = temp;
   }
-  return (rect2.top >= rect1.top && rect2.top <= rect1.top + rect1.height
-    && rect2.left >= rect1.left && rect2.left <= rect1.left + rect1.width
+  return (
+    rect2.top >= rect1.top
+    && rect2.top <= rect1.top + rect1.height
+    && rect2.left >= rect1.left
+    && rect2.left <= rect1.left + rect1.width
   );
 }
 
@@ -293,8 +296,16 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  let num1 = num;
+  while (num1 > 9) {
+    num1 = num1
+      .toString()
+      .split('')
+      .map((e) => +e)
+      .reduce((acc, e) => acc + e);
+  }
+  return num1;
 }
 
 /**
